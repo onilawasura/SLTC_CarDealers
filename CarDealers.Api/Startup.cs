@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarDealers.DataManager.Context;
+using CarDealers.DataManager.Interfaces;
+using CarDealers.DataManager.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,8 +31,9 @@ namespace CarDealers.Api
         {
             services.AddControllers();
 
-            services.AddDbContext<CarDealerDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            services.AddDbContext<CarDealerDbContext>();
+
+            services.AddScoped<IAdvertistmentRepository, AdvertistmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
