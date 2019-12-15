@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CarDealers.Models.Models.Util
 {
-    public class IdName
+    public class IdName : RecordBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
