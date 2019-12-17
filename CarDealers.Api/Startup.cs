@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using CarDealers.DataManager.Context;
 using CarDealers.DataManager.Interfaces;
 using CarDealers.DataManager.Repositories;
+using CarDealers.Models.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,26 @@ namespace CarDealers.Api
             services.AddDbContext<CarDealerDbContext>();
 
             services.AddScoped<IAdvertistmentRepository, AdvertistmentRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+
+
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
+                //add EF implementation of the identity core
+                .AddEntityFrameworkStores<CarDealerDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+            }
+            );
+
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +65,9 @@ namespace CarDealers.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //cors
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
