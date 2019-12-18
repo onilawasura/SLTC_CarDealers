@@ -9,10 +9,10 @@ namespace CarDealers.DataManager.Context
 {
     public class CarDealerDbContext : IdentityDbContext
     {
-        //public CarDealerDbContext(DbContextOptions option) : base(option)
-        //{
+        public CarDealerDbContext(DbContextOptions option) : base(option)
+        {
 
-        //}
+        }
 
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }

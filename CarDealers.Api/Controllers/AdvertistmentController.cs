@@ -26,6 +26,8 @@ namespace CarDealers.Api.Controllers
         [HttpGet]
         [ProducesResponseType(400)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<AdvertistmentsDto>))]
+
+        //GET : api/advertistment
         public IActionResult GetAllAdvertistment()
         {
             if (!ModelState.IsValid)
