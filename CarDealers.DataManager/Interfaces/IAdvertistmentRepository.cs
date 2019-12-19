@@ -9,5 +9,7 @@ namespace CarDealers.DataManager.Interfaces
     public interface IAdvertistmentRepository
     {
         ICollection<AdvertistmentsDto> GetAdvertistments();
+
+        AdvertistmentDto GetAdvertisment(int id);
     }
 }

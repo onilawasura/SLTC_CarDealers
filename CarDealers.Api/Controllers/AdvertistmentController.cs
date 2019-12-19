@@ -40,5 +40,19 @@ namespace CarDealers.Api.Controllers
         }
 
 
+        [HttpGet("{id}")]
+        public IActionResult GetAdvertistment(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var advertistment = _advertistmentRepository.GetAdvertisment(id);
+
+            return Ok(advertistment);
+        }
+
+
     }
 }

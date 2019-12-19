@@ -7,11 +7,11 @@ namespace CarDealers.Models.DTOs
     public class AdvertistmentsDto
     {
         public string AdTitle { get; set; }
-        //public string Location { get; set; }
-        //public string SubCategory { get; set; }
-        //public decimal Price { get; set; }
+        public string Destination { get; set; }
+        public string CategoryType { get; set; }
+        public decimal Price { get; set; }
         public string Url { get; set; }
-        //public int AdID { get; set; }
+        public int AdId { get; set; }
         //public string PostedDate { get; set; }
     }
 }
