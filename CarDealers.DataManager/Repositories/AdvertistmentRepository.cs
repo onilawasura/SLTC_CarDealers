@@ -25,10 +25,10 @@ namespace CarDealers.DataManager.Repositories
             var adDto = new AdvertistmentDto
             {
                 adId = advertisment.Id,
-                BrandType = _carDealerDbContext.Brand.Where(x => x.Id == advertisment.FkBrandId).Select(x => x.Name).ToString(),
+                BrandType = _carDealerDbContext.Brand.FirstOrDefault(x => x.Id == advertisment.FkBrandId).Name,
                 Urls = _carDealerDbContext.Image.Where(x => x.FkAdvertistmentId == advertisment.Id).Select(x => x.Url).ToList(),
                 CategoryType = _carDealerDbContext.Category.Where(x => x.Id == advertisment.CategoryId).FirstOrDefault().Name,
-
+                Destination = _carDealerDbContext.Location.FirstOrDefault(x => x.Id == advertisment.FkLocationId).Name,
 
             };
 
@@ -71,5 +71,7 @@ namespace CarDealers.DataManager.Repositories
 
             return true;
         }
+
+
     }
 }
