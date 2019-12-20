@@ -53,6 +53,17 @@ namespace CarDealers.Api.Controllers
             return Ok(advertistment);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult DeleteAdvertistment(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+     
+            _advertistmentRepository.DeleteAdvertistment(id);
 
+            return Ok("Recode Delete");
+        }
     }
 }

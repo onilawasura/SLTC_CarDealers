@@ -11,5 +11,8 @@ namespace CarDealers.DataManager.Interfaces
         ICollection<AdvertistmentsDto> GetAdvertistments();
 
         AdvertistmentDto GetAdvertisment(int id);
+
+        bool DeleteAdvertistment(int id);
+
     }
 }

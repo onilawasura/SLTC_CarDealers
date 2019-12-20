@@ -59,7 +59,17 @@ namespace CarDealers.DataManager.Repositories
 
             return lstAdDto;
 
+        }
 
+        public bool DeleteAdvertistment(int id)
+        {
+            var lstAd = _carDealerDbContext.Advertistment.FirstOrDefault(x => x.RecordStatus == 1 && x.Id == id);
+
+            lstAd.RecordStatus = 0;
+
+            _carDealerDbContext.SaveChanges();
+
+            return true;
         }
     }
 }
