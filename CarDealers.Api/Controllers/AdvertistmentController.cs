@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarDealers.Api.Controllers
 {
-    [Route("api/advertistment")]
+    //[Route("api/advertistment")]
     [ApiController]
     public class AdvertistmentController : ControllerBase
     {
@@ -23,10 +23,10 @@ namespace CarDealers.Api.Controllers
 
         
         
+        [Route("api/advertistment/GetAllAdvertisment")]
         [HttpGet]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<AdvertistmentsDto>))]
-
+        //[ProducesResponseType(400)]
+        //[ProducesResponseType(200, Type = typeof(IEnumerable<AdvertistmentsDto>))]
         //GET : api/advertistment
         public IActionResult GetAllAdvertistment()
         {
@@ -39,8 +39,14 @@ namespace CarDealers.Api.Controllers
             return Ok(lstAd);
         }
 
+        //[Route("GetAD")]
+        //[HttpGet("{id}")]
 
-        [HttpGet("{id}")]
+        //[Route("GetAdvertisment")]
+        //[HttpGet("{adId}")]
+
+        [Route("api/advertistment/GetAdvertisment/{id:int}")]
+        [HttpGet]
         public IActionResult GetAdvertistment(int id)
         {
             if (!ModelState.IsValid)
@@ -53,14 +59,15 @@ namespace CarDealers.Api.Controllers
             return Ok(advertistment);
         }
 
-        [HttpGet("{id}")]
+        [Route("api/advertistment/DeleteAdvertisment/{id:int}")]
+        [HttpGet]
         public IActionResult DeleteAdvertistment(int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-     
+
             _advertistmentRepository.DeleteAdvertistment(id);
 
             return Ok("Recode Delete");
