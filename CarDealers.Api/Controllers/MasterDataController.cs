@@ -37,12 +37,20 @@ namespace CarDealers.Api.Controllers
         }
 
 
-        [Route("GetAllModels")]
-        [HttpGet("{brandId}")]
+        [Route("GetAllModels/{brandId:int}")]
+        [HttpGet]
         public IActionResult GetModels(int brandId)
         {
             var brands = _masterDataRepository.GetModels(brandId);
             return Ok(brands);
+        }
+
+        [Route("GetAllLocations")]
+        [HttpGet]
+        public IActionResult GetLocations()
+        {
+            var locations = _masterDataRepository.GetLocations();
+            return Ok(locations);
         }
     }
 }

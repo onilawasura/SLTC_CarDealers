@@ -36,5 +36,11 @@ namespace CarDealers.DataManager.Repositories
 
             return models;
         }
+
+        public ICollection<Location> GetLocations()
+        {
+            var locations = _carDealerDbContext.Location.ToList();
+            return locations;
+        }
     }
 }

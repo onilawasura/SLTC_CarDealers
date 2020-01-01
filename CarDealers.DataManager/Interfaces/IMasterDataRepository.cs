@@ -13,5 +13,7 @@ namespace CarDealers.DataManager.Interfaces
         ICollection<Brand> GetBrands();
 
         ICollection<Modal> GetModels(int brandId);
+
+        ICollection<Location> GetLocations();
     }
 }

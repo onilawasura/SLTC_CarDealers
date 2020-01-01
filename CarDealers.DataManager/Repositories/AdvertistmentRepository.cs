@@ -72,6 +72,12 @@ namespace CarDealers.DataManager.Repositories
             return true;
         }
 
+        public int SaveAdvertisement(Advertistment advertistment)
+        {
+             _carDealerDbContext.Advertistment.Add(advertistment);
+            _carDealerDbContext.SaveChanges();
+            return advertistment.Id;
 
+        }
     }
 }

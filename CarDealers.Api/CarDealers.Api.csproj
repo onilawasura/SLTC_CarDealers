@@ -4,7 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\SLTC\Final Project\BackEnd\CarDealers.Api\CarDealers.Api\CarDealers.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.HelpPage" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
@@ -20,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Content\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CarDealers.DataManager.Interfaces;
 using CarDealers.Models.DTOs;
+using CarDealers.Models.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -72,5 +73,21 @@ namespace CarDealers.Api.Controllers
 
             return Ok("Recode Delete");
         }
+
+        [Route("api/advertistment/AddAdvertisment")]
+        [HttpPost]
+        public IActionResult AddAdvertisment([FromBody]Advertistment advertistment)
+        {
+            int adId = _advertistmentRepository.SaveAdvertisement(advertistment);
+            if (adId > 0)
+            {
+                var xx = Ok(new { id = adId });
+                return xx;
+            }
+
+            return BadRequest();
+        }
+
+
     }
 }

@@ -14,5 +14,7 @@ namespace CarDealers.DataManager.Interfaces
 
         bool DeleteAdvertistment(int id);
 
+        int SaveAdvertisement(Advertistment advertistment);
+
     }
 }

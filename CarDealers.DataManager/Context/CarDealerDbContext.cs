@@ -9,10 +9,10 @@ namespace CarDealers.DataManager.Context
 {
     public class CarDealerDbContext : IdentityDbContext
     {
-        public CarDealerDbContext(DbContextOptions option) : base(option)
-        {
+        //public CarDealerDbContext(DbContextOptions option) : base(option)
+        //{
 
-        }
+        //}
 
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
@@ -31,7 +31,7 @@ namespace CarDealers.DataManager.Context
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             //string sqlConnectionString = "Server=DESKTOP-AN6SANN; Database=CarDealersDb; Trusted_Connection=True";
-            string sqlConnectionString = "Server=DESKTOP-7UFK8SA\\SQL2016; Database=CarDealersDb;Integrated Security=SSPI; User ID = sa ;Password=welcome@123";
+            string sqlConnectionString = "Server=DESKTOP-7UFK8SA\\SQL2016; Database=CarDealersDbSec;Integrated Security=SSPI; User ID = sa ;Password=welcome@123";
             builder.UseSqlServer(sqlConnectionString);
             base.OnConfiguring(builder);
         }

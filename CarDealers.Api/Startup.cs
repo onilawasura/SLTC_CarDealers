@@ -49,6 +49,7 @@ namespace CarDealers.Api
             services.AddScoped<IAdvertistmentRepository, AdvertistmentRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IMasterDataRepository, MasterDataRepository>();
+            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
 
 
             services.AddDefaultIdentity<ApplicationUser>()
