@@ -41,8 +41,8 @@ namespace CarDealers.Api.Controllers
         [HttpGet]
         public IActionResult GetModels(int brandId)
         {
-            var brands = _masterDataRepository.GetModels(brandId);
-            return Ok(brands);
+            var models = _masterDataRepository.GetModels(brandId);
+            return Ok(models);
         }
 
         [Route("GetAllLocations")]
