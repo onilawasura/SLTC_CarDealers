@@ -114,7 +114,7 @@ namespace CarDealers.DataManager.Repositories
         }
             public async Task<Object> PostApplicationUser(ApplcationUserModal model)
         {
-            model.Role = "Admin";//new line
+            model.Role = "User";//new line
 
             var applicationUser = new ApplicationUser()
             {

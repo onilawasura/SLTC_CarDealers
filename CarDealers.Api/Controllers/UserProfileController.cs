@@ -31,12 +31,18 @@ namespace CarDealers.Api.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
-            return new
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault();
+           var xx =  new
             {
                 user.FullName,
                 user.Email,
-                user.UserName
+                user.UserName,
+                role,
+                user.Id
             };
+
+            return xx;
         }
 
     }
