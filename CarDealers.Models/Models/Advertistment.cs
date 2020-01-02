@@ -23,11 +23,36 @@ namespace CarDealers.Models.Models
         public Location Location { get; set; }
         public int? FkLocationId { get; set; }
 
-        public Brand Brand { get; set; }
         [ForeignKey("FkBrandId")]
+        public Brand Brand { get; set; }
         public int? FkBrandId { get; set; }
 
         public int? CategoryId { get; set; }
 
+        public float? Price { get; set; }
+
+        public string Edition { get; set; }
+
+        public string Grade { get; set; }
+
+        public int? ModelYear { get; set; }
+
+        public bool? Condition { get; set; }
+
+        public bool? Negotiable { get; set; }
+
+        public string Transmission { get; set; }
+
+        public string BodyType { get; set; }
+
+        public int? FuelType { get; set; }
+
+        public string Capacity { get; set; }
+
+        public string Millage { get; set; }
+
+        public string Email { get; set; }
+
+        public string Contactno { get; set; }
     }
 }
