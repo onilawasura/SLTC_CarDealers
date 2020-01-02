@@ -29,6 +29,7 @@ namespace CarDealers.DataManager.Repositories
                 Urls = _carDealerDbContext.Image.Where(x => x.FkAdvertistmentId == advertisment.Id).Select(x => x.Url).ToList(),
                 CategoryType = _carDealerDbContext.Category.Where(x => x.Id == advertisment.CategoryId).FirstOrDefault().Name,
                 Destination = _carDealerDbContext.Location.FirstOrDefault(x => x.Id == advertisment.FkLocationId).Name,
+                
 
             };
 

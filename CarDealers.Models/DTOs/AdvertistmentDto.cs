@@ -12,8 +12,22 @@ namespace CarDealers.Models.DTOs
         public string ModelType { get; set; }
         public string ModelNo { get; set; }
         public string Destination { get; set; }
-
+        public float Price { get; set; }
+        public string Edition { get; set; }
+        public string Grade { get; set; }
+        public int ModelYear { get; set; }
+        public bool Condition { get; set; }
+        public bool Negotiable { get; set; }
+        public string Transmission { get; set; }
+        public string BodyType { get; set; }
+        public int FuelType { get; set; }
+        public string Capacity { get; set; }
+        public string Millage { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Contactno { get; set; }
         public int adId { get; set; }
+        public string FkUserId { get; set; }
 
         public List<string> Urls { get; set; }
 
