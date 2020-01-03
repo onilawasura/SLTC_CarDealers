@@ -27,6 +27,8 @@ namespace CarDealers.Models.Models
         public Brand Brand { get; set; }
         public int? FkBrandId { get; set; }
 
+        public int? ModelId { get; set; }
+
         public int? CategoryId { get; set; }
 
         public float? Price { get; set; }
@@ -54,5 +56,10 @@ namespace CarDealers.Models.Models
         public string Email { get; set; }
 
         public string Contactno { get; set; }
+
+        public decimal Longitude { get; set; }
+        public decimal Latitude{ get; set; }
+
+        public string Description { get; set; }
     }
 }

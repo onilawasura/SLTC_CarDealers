@@ -16,5 +16,9 @@ namespace CarDealers.DataManager.Interfaces
 
         int SaveAdvertisement(Advertistment advertistment);
 
+        bool SaveComment(UserComments comments);
+
+        ICollection<UserCommentsDto> GetComments(int adId);
+
     }
 }

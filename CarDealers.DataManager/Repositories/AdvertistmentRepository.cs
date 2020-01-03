@@ -2,16 +2,19 @@
 using CarDealers.DataManager.Interfaces;
 using CarDealers.Models.DTOs;
 using CarDealers.Models.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CarDealers.DataManager.Repositories
 {
     public class AdvertistmentRepository : IAdvertistmentRepository
     {
         CarDealerDbContext _carDealerDbContext;
+        //private UserManager<ApplicationUser> _userManager;
 
         public AdvertistmentRepository(CarDealerDbContext carDealerDbContext)
         {
@@ -45,6 +48,10 @@ namespace CarDealers.DataManager.Repositories
                 Negotiable = advertisment.Negotiable,
                 Price = advertisment.Price,
                 Transmission = advertisment.Transmission,
+                Description = advertisment.Description,
+                ModelType = _carDealerDbContext.Modal.FirstOrDefault(x => x.Id == advertisment.ModelId).Name,
+                Latitude = advertisment.Latitude,
+                Longitude = advertisment.Longitude
             };
 
             return adDto;
@@ -92,6 +99,32 @@ namespace CarDealers.DataManager.Repositories
             _carDealerDbContext.SaveChanges();
             return advertistment.Id;
 
+        }
+
+        public bool SaveComment(UserComments comments)
+        {
+            _carDealerDbContext.UserComment.Add(comments);
+            var addedComment = _carDealerDbContext.SaveChanges();
+
+            return addedComment > 0 ? true : false;
+        }
+
+        public ICollection<UserCommentsDto> GetComments(int adId)
+        {
+            var lstUserComments = _carDealerDbContext.UserComment.Where(x => x.AdvertisementId == adId && x.RecordStatus == 1).ToList();
+
+            List<UserCommentsDto> lstComments = new List<UserCommentsDto>();
+
+            foreach(var comment in lstUserComments)
+            {
+                UserCommentsDto userCommentsDto = new UserCommentsDto();
+                userCommentsDto.Comment = comment.Name;
+                userCommentsDto.UserFullName = comment.UserId;
+                userCommentsDto.Date = comment.CreatedOn.ToString();
+                lstComments.Add(userCommentsDto);
+            }
+
+            return lstComments;
         }
     }
 }

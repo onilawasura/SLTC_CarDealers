@@ -10,7 +10,7 @@ namespace CarDealers.Models.DTOs
         //public string SubCategory { get; set; }
         public string BrandType { get; set; }
         public string ModelType { get; set; }
-        public string ModelNo { get; set; }
+        //public string ModelNo { get; set; }
         public string Destination { get; set; }
         public float? Price { get; set; }
         public string Edition { get; set; }
@@ -28,6 +28,10 @@ namespace CarDealers.Models.DTOs
         public string Contactno { get; set; }
         public int? adId { get; set; }
         public string FkUserId { get; set; }
+
+        public decimal? Longitude { get; set; }
+        public decimal? Latitude { get; set; }
+        public string Description { get; set; }
 
         public List<string> Urls { get; set; }
 

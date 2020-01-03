@@ -88,6 +88,23 @@ namespace CarDealers.Api.Controllers
             return BadRequest();
         }
 
+        [Route("api/advertistment/AddComment")]
+        [HttpPost]
+        public IActionResult AddComment(UserComments comment)
+        {
+            var res = _advertistmentRepository.SaveComment(comment);
+
+            return Ok(res);
+        }
+
+        [Route("api/advertistment/GetComments/{adId:int}")]
+        [HttpGet]
+        public IActionResult GetComments(int adId)
+        {
+            var lstComments = _advertistmentRepository.GetComments(adId);
+
+            return Ok(lstComments);
+        }
 
     }
 }
