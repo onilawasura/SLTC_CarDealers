@@ -9,7 +9,7 @@ namespace CarDealers.Models.DTOs
         public string AdTitle { get; set; }
         public string Destination { get; set; }
         public string CategoryType { get; set; }
-        public decimal Price { get; set; }
+        public float? Price { get; set; }
         public string Url { get; set; }
         public int AdId { get; set; }
         //public string PostedDate { get; set; }
