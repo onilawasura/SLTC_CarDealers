@@ -8,7 +8,7 @@ namespace CarDealers.DataManager.Interfaces
 {
     public interface IAdvertistmentRepository
     {
-        ICollection<AdvertistmentsDto> GetAdvertistments();
+        ICollection<AdvertistmentsDto> GetAdvertistments(int? locationId, int? categoryId, float? minPrice, float? maxPrice);
 
         AdvertistmentDto GetAdvertisment(int id);
 
@@ -19,6 +19,8 @@ namespace CarDealers.DataManager.Interfaces
         bool SaveComment(UserComments comments);
 
         ICollection<UserCommentsDto> GetComments(int adId);
+
+
 
     }
 }

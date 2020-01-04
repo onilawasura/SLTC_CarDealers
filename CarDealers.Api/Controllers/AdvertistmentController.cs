@@ -22,23 +22,37 @@ namespace CarDealers.Api.Controllers
             this._advertistmentRepository = advertistmentRepository;
         }
 
-        
-        
-        [Route("api/advertistment/GetAllAdvertisment")]
-        [HttpGet]
+
+
+        //[Route("api/advertistment/GetAllAdvertisment")]
+        //[HttpGet]
         //[ProducesResponseType(400)]
         //[ProducesResponseType(200, Type = typeof(IEnumerable<AdvertistmentsDto>))]
         //GET : api/advertistment
-        public IActionResult GetAllAdvertistment()
+        //public IActionResult GetAllAdvertistment()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    var lstAd = _advertistmentRepository.GetAdvertistments(2, null);
+
+        //    return Ok(lstAd);
+        //}
+
+        [Route("api/advertistment/GetAllAdvertisment")]
+        [HttpPost]
+        public IActionResult GetAllAdvertistment([FromBody] FilteredDataDto filteredDataDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var lstAd = _advertistmentRepository.GetAdvertistments();
+            var lstAd = _advertistmentRepository.GetAdvertistments(filteredDataDto.LocationId, filteredDataDto.CategoryId, filteredDataDto.MinPrice, filteredDataDto.MaxPrice);
 
             return Ok(lstAd);
         }
+
 
         //[Route("GetAD")]
         //[HttpGet("{id}")]

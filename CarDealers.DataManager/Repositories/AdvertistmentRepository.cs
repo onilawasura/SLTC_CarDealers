@@ -58,9 +58,22 @@ namespace CarDealers.DataManager.Repositories
 
         }
 
-        public ICollection<AdvertistmentsDto> GetAdvertistments()
+        public ICollection<AdvertistmentsDto> GetAdvertistments(int? locationId, int? categoryId, float? minPrice, float? maxPrice)
         {
-            var lstAd = _carDealerDbContext.Advertistment.Where(x => x.RecordStatus == 1).ToList();
+            //var lstAd = _carDealerDbContext.Advertistment.Where(x => x.RecordStatus == 1 && x.FkLocationId == locationId).ToList();
+            var lstAd_one = (from x in _carDealerDbContext.Advertistment
+                         where (string.IsNullOrEmpty(locationId.ToString())
+                         || x.FkLocationId == locationId)
+                         select x).ToList();
+
+            var lstAd_two = (from x in lstAd_one
+                         where (string.IsNullOrEmpty(categoryId.ToString()) || x.CategoryId == categoryId)
+                         select x).ToList();
+
+            var lstAd = (from x in lstAd_one
+                             where ((string.IsNullOrEmpty(minPrice.ToString()) || string.IsNullOrEmpty(maxPrice.ToString())) || (x.Price >= minPrice && x.Price <= maxPrice))
+                             select x).ToList();
+
 
             var lstAdDto = new List<AdvertistmentsDto>();
 
