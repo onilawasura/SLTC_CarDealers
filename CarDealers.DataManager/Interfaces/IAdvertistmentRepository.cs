@@ -20,6 +20,8 @@ namespace CarDealers.DataManager.Interfaces
 
         ICollection<UserCommentsDto> GetComments(int adId);
 
+        ICollection<AdvertistmentsDto> GetAdvertistmentsByUser(string userId);
+
 
 
     }

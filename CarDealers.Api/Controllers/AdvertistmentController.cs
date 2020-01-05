@@ -120,5 +120,12 @@ namespace CarDealers.Api.Controllers
             return Ok(lstComments);
         }
 
+        [Route("api/advertistment/GetAdvertistmentByUser/{userId:int}")]
+        [HttpGet]
+        public IActionResult GetAdvertistmentByUser(string userId)
+        {
+            return Ok(_advertistmentRepository.GetAdvertistmentsByUser(userId));
+        }
+
     }
 }

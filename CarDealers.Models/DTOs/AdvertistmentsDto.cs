@@ -12,6 +12,8 @@ namespace CarDealers.Models.DTOs
         public float? Price { get; set; }
         public string Url { get; set; }
         public int AdId { get; set; }
+
+        public string Date { get; set; }
         //public string PostedDate { get; set; }
     }
 }

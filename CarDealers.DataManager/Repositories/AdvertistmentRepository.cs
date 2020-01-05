@@ -70,8 +70,8 @@ namespace CarDealers.DataManager.Repositories
                          where (string.IsNullOrEmpty(categoryId.ToString()) || x.CategoryId == categoryId)
                          select x).ToList();
 
-            var lstAd = (from x in lstAd_one
-                             where ((string.IsNullOrEmpty(minPrice.ToString()) || string.IsNullOrEmpty(maxPrice.ToString())) || (x.Price >= minPrice && x.Price <= maxPrice))
+            var lstAd = (from x in lstAd_two
+                         where ((string.IsNullOrEmpty(minPrice.ToString()) || string.IsNullOrEmpty(maxPrice.ToString())) || (x.Price >= minPrice && x.Price <= maxPrice))
                              select x).ToList();
 
 
@@ -87,6 +87,7 @@ namespace CarDealers.DataManager.Repositories
                     Destination = _carDealerDbContext.Location.Where(x => x.Id == ad.FkLocationId).FirstOrDefault().Name,
                     CategoryType = _carDealerDbContext.Category.Where(x => x.Id == ad.CategoryId).FirstOrDefault().Name,
                     Price = ad.Price,
+                    Date = ad.CreatedOn.ToString()
                 }); 
             }
 
@@ -138,6 +139,30 @@ namespace CarDealers.DataManager.Repositories
             }
 
             return lstComments;
+        }
+
+        public ICollection<AdvertistmentsDto> GetAdvertistmentsByUser(string userId)
+        {
+            var lstAd = _carDealerDbContext.Advertistment.Where(x => x.FkUserId == userId && x.RecordStatus == 1).ToList();
+
+            var lstAdDto = new List<AdvertistmentsDto>();
+
+            foreach(var ad in lstAd)
+            {
+                lstAdDto.Add(new AdvertistmentsDto
+                {
+                    AdId = ad.Id,
+                    AdTitle = ad.AdTitle,
+                    Url = _carDealerDbContext.Image.Where(x => x.FkAdvertistmentId == ad.Id).FirstOrDefault().Url,
+                    Destination = _carDealerDbContext.Location.Where(x => x.Id == ad.FkLocationId).FirstOrDefault().Name,
+                    CategoryType = _carDealerDbContext.Category.Where(x => x.Id == ad.CategoryId).FirstOrDefault().Name,
+                    Price = ad.Price,
+                    Date = ad.CreatedOn.ToString()
+                });
+            }
+
+            return lstAdDto;
+
         }
     }
 }
