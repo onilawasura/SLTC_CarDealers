@@ -32,6 +32,9 @@ bld/
 [Ll]og/
 **/migrations/*
 **/Content/Images/*
+**/Context/*
+
+*.json
 
 
 # Visual Studio 2015/2017 cache/options directory

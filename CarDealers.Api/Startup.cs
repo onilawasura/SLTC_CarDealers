@@ -41,8 +41,9 @@ namespace CarDealers.Api
 
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
-
-            services.AddDbContext<CarDealerDbContext>();
+            string connectionString = Configuration["connectionStrings:IdentityConnection"];
+            services.AddDbContext<CarDealerDbContext>(o => o.UseSqlServer(connectionString));
+            //services.AddDbContext<CarDealerDbContext>();
 
             // services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
