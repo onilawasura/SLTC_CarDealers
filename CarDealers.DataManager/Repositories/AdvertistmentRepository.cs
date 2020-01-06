@@ -51,7 +51,8 @@ namespace CarDealers.DataManager.Repositories
                 Description = advertisment.Description,
                 ModelType = _carDealerDbContext.Modal.FirstOrDefault(x => x.Id == advertisment.ModelId).Name,
                 Latitude = advertisment.Latitude,
-                Longitude = advertisment.Longitude
+                Longitude = advertisment.Longitude,
+                Date = advertisment.CreatedOn.ToString()
             };
 
             return adDto;
@@ -163,6 +164,58 @@ namespace CarDealers.DataManager.Repositories
 
             return lstAdDto;
 
+        }
+
+        public bool ManageFavourite(FavouriteAdvertistment favouriteAdvertistment)
+        {
+            
+            if(IsUserFavouriteAd(favouriteAdvertistment.FkUserId, favouriteAdvertistment.FkAdvertistmentId))
+            {
+                _carDealerDbContext.FavouriteAdvertistment.Remove(favouriteAdvertistment);
+                var isDeletedFavourite = _carDealerDbContext.SaveChanges();
+
+                return isDeletedFavourite > 0 ? true : false;
+            }
+            else
+            {
+                _carDealerDbContext.FavouriteAdvertistment.Add(favouriteAdvertistment);
+                var isAddedFavourite = _carDealerDbContext.SaveChanges();
+                return isAddedFavourite > 0 ? true : false;
+            }
+        }
+
+        public bool IsUserFavouriteAd(string userId, int? adId)
+        {
+            var isUserFav = _carDealerDbContext.FavouriteAdvertistment.Any(x => x.FkUserId == userId && x.FkAdvertistmentId == adId);
+
+            return (isUserFav);
+        }
+
+        public ICollection<AdvertistmentsDto> GetAdvertistmentsByFavourite(string userId)
+        {
+            var lstAdId = _carDealerDbContext.FavouriteAdvertistment.Where(x => x.FkUserId == userId).Select(x => x.FkAdvertistmentId);
+
+            // var lstAd = _carDealerDbContext.Advertistment.Where(x => x.FkUserId == userId && x.RecordStatus == 1).ToList();
+
+            var lstAdDto = new List<AdvertistmentsDto>();
+
+            foreach (var adId in lstAdId)
+            {
+                var advertistment = _carDealerDbContext.Advertistment.FirstOrDefault(x => x.Id == adId);
+
+                AdvertistmentsDto advertistmentsDto = new AdvertistmentsDto();
+                advertistmentsDto.AdId = advertistment.Id;
+                advertistmentsDto.AdTitle = advertistment.AdTitle;
+                advertistmentsDto.Url = _carDealerDbContext.Image.Where(x => x.FkAdvertistmentId == adId).FirstOrDefault().Url;
+                advertistmentsDto.Destination = _carDealerDbContext.Location.Where(x => x.Id == advertistment.FkLocationId).FirstOrDefault().Name;
+                advertistmentsDto.CategoryType = _carDealerDbContext.Category.Where(x => x.Id == advertistment.CategoryId).FirstOrDefault().Name;
+                advertistmentsDto.Price = advertistment.Price;
+                advertistmentsDto.Date = advertistment.CreatedOn.ToString();
+
+                lstAdDto.Add(advertistmentsDto);
+            }
+
+            return lstAdDto;
         }
     }
 }

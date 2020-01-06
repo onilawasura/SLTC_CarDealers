@@ -33,6 +33,8 @@ namespace CarDealers.Models.DTOs
         public decimal? Latitude { get; set; }
         public string Description { get; set; }
 
+        public string Date { get; set; }
+
         public List<string> Urls { get; set; }
 
         public AdvertistmentDto()

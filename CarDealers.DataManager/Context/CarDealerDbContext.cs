@@ -30,6 +30,8 @@ namespace CarDealers.DataManager.Context
 
         public DbSet<UserComments> UserComment { get; set; }
 
+        public DbSet<FavouriteAdvertistment> FavouriteAdvertistment { get; set; }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder builder)
         //{
         //    //string sqlConnectionString = "Server=DESKTOP-AN6SANN; Database=CarDealersDb; Trusted_Connection=True";
