@@ -58,6 +58,7 @@ namespace CarDealers.Api
                 //add EF implementation of the identity core
                 .AddEntityFrameworkStores<CarDealerDbContext>();
 
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
