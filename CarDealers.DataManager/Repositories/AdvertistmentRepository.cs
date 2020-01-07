@@ -62,8 +62,9 @@ namespace CarDealers.DataManager.Repositories
         public ICollection<AdvertistmentsDto> GetAdvertistments(int? locationId, int? categoryId, float? minPrice, float? maxPrice)
         {
             //var lstAd = _carDealerDbContext.Advertistment.Where(x => x.RecordStatus == 1 && x.FkLocationId == locationId).ToList();
-            var lstAd_one = (from x in _carDealerDbContext.Advertistment
-                         where (string.IsNullOrEmpty(locationId.ToString())
+            var deleteItemsFilter = _carDealerDbContext.Advertistment.Where(x => x.RecordStatus == 1).ToList();
+            var lstAd_one = (from x in deleteItemsFilter
+                             where (string.IsNullOrEmpty(locationId.ToString())
                          || x.FkLocationId == locationId)
                          select x).ToList();
 
@@ -110,7 +111,7 @@ namespace CarDealers.DataManager.Repositories
 
         public int SaveAdvertisement(Advertistment advertistment)
         {
-             _carDealerDbContext.Advertistment.Add(advertistment);
+            _carDealerDbContext.Advertistment.Add(advertistment);
             _carDealerDbContext.SaveChanges();
             return advertistment.Id;
 
