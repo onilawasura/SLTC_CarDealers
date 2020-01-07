@@ -176,13 +176,15 @@ namespace CarDealers.DataManager.Repositories
                 _carDealerDbContext.FavouriteAdvertistment.Remove(favObj);
                 var isDeletedFavourite = _carDealerDbContext.SaveChanges();
 
-                return isDeletedFavourite > 0 ? true : false;
+                //return isDeletedFavourite > 0 ? true : false;
+                return false;
             }
             else
             {
                 _carDealerDbContext.FavouriteAdvertistment.Add(favouriteAdvertistment);
                 var isAddedFavourite = _carDealerDbContext.SaveChanges();
-                return isAddedFavourite > 0 ? true : false;
+                //return isAddedFavourite > 0 ? true : false;
+                return true;
             }
         }
 

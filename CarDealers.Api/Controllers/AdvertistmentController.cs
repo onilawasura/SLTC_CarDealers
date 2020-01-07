@@ -83,9 +83,9 @@ namespace CarDealers.Api.Controllers
                 return BadRequest();
             }
 
-            _advertistmentRepository.DeleteAdvertistment(id);
+            var res = _advertistmentRepository.DeleteAdvertistment(id);
 
-            return Ok("Recode Delete");
+            return Ok(new { response = res });
         }
 
         [Route("api/advertistment/AddAdvertisment")]
