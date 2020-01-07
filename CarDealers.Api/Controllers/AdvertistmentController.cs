@@ -134,20 +134,26 @@ namespace CarDealers.Api.Controllers
             return Ok(_advertistmentRepository.ManageFavourite(favouriteAdvertistment));
         }
 
-        [Route("api/advertistment/IsUserAdvertisment")]
+        [Route("api/advertistment/IsUserAdvertisment/{userId}/{adId:int}")]
         [HttpGet]
         public IActionResult IsUserAdvertisment(string userId, int adId)
         {
             return Ok(_advertistmentRepository.IsUserFavouriteAd(userId, adId));
         }
 
-        [Route("api/advertistment/GetAdvertismentByFavourite")]
+        [Route("api/advertistment/GetAdvertismentByFavourite/{userId}")]
         [HttpGet]
         public IActionResult GetAdvertismentByFavourite(string userId)
         {
             return Ok(_advertistmentRepository.GetAdvertistmentsByFavourite(userId));
         }
 
+        [Route("api/advertistment/AddRepordedAdvertisment")]
+        [HttpPost]
+        public IActionResult AddRepordedAdvertisment(ReportedAdvertisment reportedAdvertisment)
+        {
+            return Ok(_advertistmentRepository.AddReportedAdvertisment(reportedAdvertisment));
+        }
     }
 
     public class UserData

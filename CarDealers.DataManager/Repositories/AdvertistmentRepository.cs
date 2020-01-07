@@ -171,7 +171,8 @@ namespace CarDealers.DataManager.Repositories
             
             if(IsUserFavouriteAd(favouriteAdvertistment.FkUserId, favouriteAdvertistment.FkAdvertistmentId))
             {
-                _carDealerDbContext.FavouriteAdvertistment.Remove(favouriteAdvertistment);
+                var favObj = _carDealerDbContext.FavouriteAdvertistment.FirstOrDefault(x => x.FkUserId == favouriteAdvertistment.FkUserId && x.FkAdvertistmentId == favouriteAdvertistment.FkAdvertistmentId);
+                _carDealerDbContext.FavouriteAdvertistment.Remove(favObj);
                 var isDeletedFavourite = _carDealerDbContext.SaveChanges();
 
                 return isDeletedFavourite > 0 ? true : false;
@@ -216,6 +217,20 @@ namespace CarDealers.DataManager.Repositories
             }
 
             return lstAdDto;
+        }
+
+        public bool AddReportedAdvertisment(ReportedAdvertisment reportedAdvertisment)
+        {
+            bool isReportExist = _carDealerDbContext.ReportedAdvertisment.Any(x => x.FkUserId == reportedAdvertisment.FkUserId && x.FkAdvertistmentId == reportedAdvertisment.FkAdvertistmentId);
+            if (!isReportExist)
+            {
+                 _carDealerDbContext.ReportedAdvertisment.Add(reportedAdvertisment);
+                var isAddedRecord = _carDealerDbContext.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

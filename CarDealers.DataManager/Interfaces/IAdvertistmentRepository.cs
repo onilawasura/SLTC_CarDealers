@@ -27,5 +27,7 @@ namespace CarDealers.DataManager.Interfaces
         bool IsUserFavouriteAd(string userId, int? adId);
 
         ICollection<AdvertistmentsDto> GetAdvertistmentsByFavourite(string userId);
+
+        bool AddReportedAdvertisment(ReportedAdvertisment reportedAdvertisment);
     }
 }
